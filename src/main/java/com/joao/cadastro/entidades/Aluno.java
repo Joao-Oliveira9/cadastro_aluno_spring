@@ -19,6 +19,8 @@ public class Aluno {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    public Integer id;
+//*
+
    public String name;
    public String age;
 
