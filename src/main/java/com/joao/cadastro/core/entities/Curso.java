@@ -4,21 +4,19 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
-import java.sql.Date;
 import java.util.UUID;
 
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "Aluno")
-public class Aluno {
-    //Definição da primary Key
+@Table(name = "Curso")
+public class Curso {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID aluno_id;
+    private UUID id_curso;
 
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
