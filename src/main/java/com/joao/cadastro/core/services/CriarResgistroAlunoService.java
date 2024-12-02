@@ -2,14 +2,15 @@ package com.joao.cadastro.core.services;
 
 import  com.joao.cadastro.repository.AlunoRepository;
 import com.joao.cadastro.core.entities.Aluno;
-import  com.joao.cadastro.core.usecases.criarRegistroAlunoUseCase;
+import com.joao.cadastro.core.usecases.CriarRegistroAlunoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CriarResgistroAlunoService implements criarRegistroAlunoUseCase {
+public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
     @Autowired
     AlunoRepository alunoRepository;
+
 
     @Override
     public void criarRegistroAluno(Aluno aluno) {
