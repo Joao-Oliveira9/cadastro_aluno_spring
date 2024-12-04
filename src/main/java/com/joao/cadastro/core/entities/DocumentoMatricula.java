@@ -1,5 +1,6 @@
 package com.joao.cadastro.core.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,33 +9,31 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.cglib.core.Local;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "TB_Disciplina")
-public class Disciplina {
+@Table(name = "TB_DocumentoMatricula")
+public class DocumentoMatricula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "nome",nullable = false,unique = true)
-    private String nome;
+    @Column(name = "numeroDocumento",nullable = false,unique = true)
+    private int numeroDocumento;
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDate update_at;
+    private LocalDateTime updated_at;
 
-    //soft delete
     @Column(name = "deleted_at",updatable = false)
-    private LocalDate deleted_at;
-
+    private LocalDateTime deleted_at;
 }
