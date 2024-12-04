@@ -12,6 +12,8 @@ import org.springframework.data.annotation.CreatedDate;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -28,6 +30,22 @@ public class Aluno {
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
 
+    //relação do curso com aluno
+    @ManyToOne
+    @JoinColumn(name = "curso_id"
+    )
+    private Curso curso;
+
+    //relação entre aluno e disciplina -> que seria muitos pra muitos
+    @ManyToMany
+    @JoinTable(
+            name = "TB_Aluno_Disciplina",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "disciplina_id")
+    )
+    private Set<Disciplina>disciplinas;
+
+
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
     private LocalDateTime created_at;
@@ -39,4 +57,6 @@ public class Aluno {
     //nesse caso estou fazendo um soft delete- vai ser coletada a data de outra forma
     @Column(name = "deleted_at", updatable = false)
     private LocalDateTime deletedAt;
+
+
 }

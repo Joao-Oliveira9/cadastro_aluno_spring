@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -24,6 +25,10 @@ public class Disciplina {
 
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
+
+    @ManyToMany(mappedBy = "disciplinas")
+    private Set<Aluno> alunos;
+
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
