@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+import javax.print.Doc;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,6 +46,10 @@ public class Aluno {
     )
     private Set<Disciplina>disciplinas;
 
+
+    @OneToOne
+    @JoinColumn(name = "matricula_id")
+    private DocumentoMatricula documentoMatricula;
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)

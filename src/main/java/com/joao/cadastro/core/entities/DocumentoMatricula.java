@@ -30,6 +30,10 @@ public class DocumentoMatricula {
     @Column(name = "created_at",updatable = false)
     private LocalDateTime created_at;
 
+
+    @OneToOne(mappedBy = "documentoMatricula",cascade = CascadeType.ALL)
+    private Aluno aluno;
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
