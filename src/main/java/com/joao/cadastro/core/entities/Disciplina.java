@@ -29,6 +29,10 @@ public class Disciplina {
     @ManyToMany(mappedBy = "disciplinas")
     private Set<Aluno> alunos;
 
+    //relação com o curso
+    @ManyToMany(mappedBy = "disciplinas")
+    private Set<Curso> cursos;
+
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)

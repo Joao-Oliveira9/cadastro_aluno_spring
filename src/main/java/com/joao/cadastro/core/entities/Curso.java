@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.cglib.core.Local;
 
@@ -26,9 +27,18 @@ public class Curso {
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
 
+    //olhar aqui
     @OneToMany(mappedBy = "curso")
     private Set<Aluno> aluno;
 
+    //relação entre aluno e curso
+    @ManyToMany
+    @JoinTable(
+            name = "TB_curso_disciplina",
+            joinColumns = @JoinColumn(name = "curso_id"),
+            inverseJoinColumns = @JoinColumn(name = "disciplina_id")
+    )
+    private Set<Disciplina> disciplinas;
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)

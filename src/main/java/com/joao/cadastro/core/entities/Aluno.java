@@ -47,8 +47,9 @@ public class Aluno {
     private Set<Disciplina>disciplinas;
 
 
+    //relação entre aluno e documentoMatricula
     @OneToOne
-    @JoinColumn(name = "matricula_id")
+    @JoinColumn(name = "matricula_id",unique = true)
     private DocumentoMatricula documentoMatricula;
 
     @CreationTimestamp
