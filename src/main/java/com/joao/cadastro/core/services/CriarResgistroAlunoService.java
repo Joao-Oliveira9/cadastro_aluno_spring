@@ -14,7 +14,8 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
 
 
     @Override
+    //eu preciso criar tbm uma entidade DocumentoMatricula pra ser capaz de mapear o aluno corretamente
     public void criarRegistroAluno(Aluno aluno) {
-        alunoRepository.save(aluno);
+            alunoRepository.save(aluno);
     }
 }
