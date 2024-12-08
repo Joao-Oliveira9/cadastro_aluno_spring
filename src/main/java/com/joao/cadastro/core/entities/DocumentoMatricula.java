@@ -4,6 +4,7 @@ package com.joao.cadastro.core.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,7 +13,8 @@ import org.springframework.cglib.core.Local;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@AllArgsConstructor
+//@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity

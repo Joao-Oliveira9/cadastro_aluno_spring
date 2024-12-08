@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -36,14 +37,14 @@ public class Disciplina {
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDate update_at;
+    private LocalDateTime update_at;
 
     //soft delete
     @Column(name = "deleted_at",updatable = false)
-    private LocalDate deleted_at;
+    private LocalDateTime deleted_at;
 
 }

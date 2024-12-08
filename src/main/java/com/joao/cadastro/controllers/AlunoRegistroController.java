@@ -21,7 +21,6 @@ public class AlunoRegistroController {
     @PostMapping(value = "registro")
     public void postRequestResgistroAluno(@RequestBody Aluno aluno){
         criarRegistroAlunoUseCase.criarRegistroAluno(aluno);
-        //alunoRepository.save(aluno);
-        //System.out.println("Resgistrado"+ aluno.getNome());
+
     }
 }
