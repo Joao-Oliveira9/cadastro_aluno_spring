@@ -1,5 +1,6 @@
 package com.joao.cadastro.controllers;
 
+import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Aluno;
 import com.joao.cadastro.core.services.CriarResgistroAlunoService;
 import com.joao.cadastro.core.usecases.CriarRegistroAlunoUseCase;
@@ -19,8 +20,9 @@ public class AlunoRegistroController {
     CriarRegistroAlunoUseCase criarRegistroAlunoUseCase;
 
     @PostMapping(value = "registro")
-    public void postRequestResgistroAluno(@RequestBody Aluno aluno){
-        criarRegistroAlunoUseCase.criarRegistroAluno(aluno);
+    public void postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
+        System.out.println(alunoDto.getNome_aluno());
+        criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
 
     }
 }

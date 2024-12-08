@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AlunoDto {
-    String nome;
-    String curso;
+    String nome_aluno;
+    String nome_curso;
     String numeroDocumentoMatricula;
 }

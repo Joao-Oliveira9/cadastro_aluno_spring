@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,7 +18,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@AllArgsConstructor
+@NoArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -32,7 +34,8 @@ public class Aluno {
     private String nome;
 
     //relação do curso com aluno
-    @ManyToOne
+    //teste
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "curso_id"
     )
     private Curso curso;
