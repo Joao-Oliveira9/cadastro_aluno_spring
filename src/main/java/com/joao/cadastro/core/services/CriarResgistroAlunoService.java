@@ -41,12 +41,12 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
     }
 
     //buscar uma entidade curso na base de dados com base no nome
-    public Curso buscarCurso(String nomeCurso){
+    private Curso buscarCurso(String nomeCurso){
         return cursoRepository.findCursoByNome(nomeCurso);
     }
 
     //cria uma entidade matricula
-    public DocumentoMatricula criarRegistroMatricula(String numeroMatricula){
+    private DocumentoMatricula criarRegistroMatricula(String numeroMatricula){
         DocumentoMatricula documentoMatricula = new DocumentoMatricula();
         documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
         System.out.println(documentoMatricula.getNumeroDocumento());

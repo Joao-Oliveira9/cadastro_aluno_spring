@@ -7,6 +7,4 @@ import com.joao.cadastro.core.entities.DocumentoMatricula;
 
 public interface CriarRegistroAlunoUseCase {
     void criarRegistroAluno(AlunoDto aluno);
-    Curso buscarCurso(String nomeCurso);
-    DocumentoMatricula criarRegistroMatricula(String numeroMatricula);
 }

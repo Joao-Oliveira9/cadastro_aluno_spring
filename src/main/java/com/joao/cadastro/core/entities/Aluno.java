@@ -65,7 +65,7 @@ public class Aluno {
     private LocalDateTime update_at;
 
     //nesse caso estou fazendo um soft delete- vai ser coletada a data de outra forma
-    @Column(name = "deleted_at", updatable = false)
+        @Column(name = "deleted_at", updatable = true)
     private LocalDateTime deletedAt;
 
 

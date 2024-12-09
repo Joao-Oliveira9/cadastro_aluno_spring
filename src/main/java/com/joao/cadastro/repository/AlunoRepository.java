@@ -8,5 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, UUID> {
+    Aluno findByNome(String nome);
 
 }
