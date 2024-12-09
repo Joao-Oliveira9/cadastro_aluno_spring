@@ -46,5 +46,4 @@ public class Disciplina {
     //soft delete
     @Column(name = "deleted_at",updatable = false)
     private LocalDateTime deleted_at;
-
 }

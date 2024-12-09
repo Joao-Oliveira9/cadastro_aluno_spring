@@ -1,6 +1,7 @@
 package com.joao.cadastro.core.services;
 
 import com.joao.cadastro.core.Dtos.AlunoDto;
+import com.joao.cadastro.core.entities.Curso;
 import com.joao.cadastro.core.entities.DocumentoMatricula;
 import  com.joao.cadastro.repository.AlunoRepository;
 import com.joao.cadastro.core.entities.Aluno;
@@ -22,20 +23,19 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
     @Autowired
     DocumentoMatriculaRepository documentoMatriculaRepository;
 
-
-   @Autowired
-   CursoRepository cursoRepository;
-
+    @Autowired
+    CursoRepository cursoRepository;
 
     @Transactional
     public void criarRegistroAluno(AlunoDto alunoDto) {
-
         Aluno aluno = new Aluno();
+
         aluno.setNome(alunoDto.getNome_aluno());
 
-        //revisar o erro que tinha dado aqui antes
-        UUID id_curso = cursoRepository.findCursoByNome(alunoDto.getNome_curso()).getId_curso();
-        aluno.setCurso(cursoRepository.findCursoByNome(alunoDto.getNome_curso()));
+        Curso cursoRealizado = cursoRepository.findCursoByNome(alunoDto.getNome_curso());
+        UUID id_curso = cursoRealizado.getId_curso();
+
+        aluno.setCurso(cursoRealizado);
 
         System.out.println(id_curso);
         alunoRepository.save(aluno);

@@ -35,7 +35,8 @@ public class Aluno {
 
     //relação do curso com aluno
     //teste
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    //@ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "curso_id"
     )
     private Curso curso;

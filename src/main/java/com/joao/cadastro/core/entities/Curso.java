@@ -1,16 +1,14 @@
 package com.joao.cadastro.core.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDate;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -21,7 +19,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_Curso")
 public class Curso {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_curso;
@@ -29,7 +26,6 @@ public class Curso {
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
 
-    //olhar aqui
     @OneToMany(mappedBy = "curso")
     private Set<Aluno> aluno;
 

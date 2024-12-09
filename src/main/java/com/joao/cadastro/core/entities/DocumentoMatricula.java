@@ -13,14 +13,12 @@ import org.springframework.cglib.core.Local;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-//@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Entity
 @Table(name = "TB_DocumentoMatricula")
 public class DocumentoMatricula {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -31,7 +29,6 @@ public class DocumentoMatricula {
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
     private LocalDateTime created_at;
-
 
     @OneToOne(mappedBy = "documentoMatricula",cascade = CascadeType.ALL)
     private Aluno aluno;
