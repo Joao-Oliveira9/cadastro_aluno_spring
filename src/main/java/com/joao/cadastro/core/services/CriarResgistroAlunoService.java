@@ -50,7 +50,7 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
         DocumentoMatricula documentoMatricula = new DocumentoMatricula();
         documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
         System.out.println(documentoMatricula.getNumeroDocumento());
-        return new DocumentoMatricula();
+        return documentoMatricula;
     }
 
 }

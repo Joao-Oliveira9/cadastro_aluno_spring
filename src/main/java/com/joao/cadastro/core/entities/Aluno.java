@@ -30,7 +30,7 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID aluno_id;
 
-    @Column(name = "nome",nullable = false,unique = true)
+    @Column(name = "nome",nullable = false,unique = false)
     private String nome;
 
     //relação do curso com aluno
