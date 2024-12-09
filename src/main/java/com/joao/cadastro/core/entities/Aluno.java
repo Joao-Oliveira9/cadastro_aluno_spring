@@ -52,7 +52,7 @@ public class Aluno {
 
 
     //relação entre aluno e documentoMatricula
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "matricula_id",unique = true)
     private DocumentoMatricula documentoMatricula;
 

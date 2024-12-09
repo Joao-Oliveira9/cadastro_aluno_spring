@@ -28,16 +28,29 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
 
     @Transactional
     public void criarRegistroAluno(AlunoDto alunoDto) {
+        String nomeCurso = alunoDto.getNome_curso();
+        Curso cursoRealizado = buscarCurso(nomeCurso);
+        DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
+
         Aluno aluno = new Aluno();
-
-        aluno.setNome(alunoDto.getNome_aluno());
-
-        Curso cursoRealizado = cursoRepository.findCursoByNome(alunoDto.getNome_curso());
-        UUID id_curso = cursoRealizado.getId_curso();
-
         aluno.setCurso(cursoRealizado);
+        aluno.setNome(alunoDto.getNome_aluno());
+        aluno.setDocumentoMatricula(documentoMatricula);
 
-        System.out.println(id_curso);
         alunoRepository.save(aluno);
     }
+
+    //buscar uma entidade curso na base de dados com base no nome
+    public Curso buscarCurso(String nomeCurso){
+        return cursoRepository.findCursoByNome(nomeCurso);
+    }
+
+    //cria uma entidade matricula
+    public DocumentoMatricula criarRegistroMatricula(String numeroMatricula){
+        DocumentoMatricula documentoMatricula = new DocumentoMatricula();
+        documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
+        System.out.println(documentoMatricula.getNumeroDocumento());
+        return new DocumentoMatricula();
+    }
+
 }
