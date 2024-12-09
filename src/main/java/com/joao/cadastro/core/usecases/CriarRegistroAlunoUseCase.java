@@ -5,6 +5,6 @@ import com.joao.cadastro.core.entities.Aluno;
 import com.joao.cadastro.core.entities.Curso;
 import com.joao.cadastro.core.entities.DocumentoMatricula;
 
-public interface CriarRegistroAlunoUseCase {
-    void criarRegistroAluno(AlunoDto aluno);
+public interface CriarRegistroAlunoUseCase extends AlunoExistenteUseCase {
+    String criarRegistroAluno(AlunoDto aluno);
 }

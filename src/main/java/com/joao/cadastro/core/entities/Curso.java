@@ -26,7 +26,7 @@ public class Curso {
     @Column(name = "nome",nullable = false,unique = true)
     private String nome;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso",fetch = FetchType.LAZY)
     private Set<Aluno> aluno;
 
     //relação entre aluno e curso

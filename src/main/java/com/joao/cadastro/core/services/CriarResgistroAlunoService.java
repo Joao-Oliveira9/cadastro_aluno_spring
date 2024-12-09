@@ -3,6 +3,7 @@ package com.joao.cadastro.core.services;
 import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Curso;
 import com.joao.cadastro.core.entities.DocumentoMatricula;
+import com.joao.cadastro.core.usecases.AlunoExistenteUseCaseImpl;
 import  com.joao.cadastro.repository.AlunoRepository;
 import com.joao.cadastro.core.entities.Aluno;
 import com.joao.cadastro.core.usecases.CriarRegistroAlunoUseCase;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
-public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
+public class CriarResgistroAlunoService extends AlunoExistenteUseCaseImpl implements CriarRegistroAlunoUseCase {
     @Autowired
     AlunoRepository alunoRepository;
 
@@ -27,17 +28,22 @@ public class CriarResgistroAlunoService implements CriarRegistroAlunoUseCase {
     CursoRepository cursoRepository;
 
     @Transactional
-    public void criarRegistroAluno(AlunoDto alunoDto) {
-        String nomeCurso = alunoDto.getNome_curso();
-        Curso cursoRealizado = buscarCurso(nomeCurso);
-        DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
+    public String criarRegistroAluno(AlunoDto alunoDto) {
 
-        Aluno aluno = new Aluno();
-        aluno.setCurso(cursoRealizado);
-        aluno.setNome(alunoDto.getNome_aluno());
-        aluno.setDocumentoMatricula(documentoMatricula);
+        if(checarDocumentoMatricula(Integer.parseInt(alunoDto.getNumeroDocumentoMatricula()))){
+            String nomeCurso = alunoDto.getNome_curso();
+            Curso cursoRealizado = buscarCurso(nomeCurso);
+            DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
 
-        alunoRepository.save(aluno);
+            Aluno aluno = new Aluno();
+            aluno.setCurso(cursoRealizado);
+            aluno.setNome(alunoDto.getNome_aluno());
+            aluno.setDocumentoMatricula(documentoMatricula);
+
+            alunoRepository.save(aluno);
+            return "Aluno " + aluno.getNome() +" inserido";
+        }
+        return "Numero de matricula ja sendo utilizado";
     }
 
     //buscar uma entidade curso na base de dados com base no nome

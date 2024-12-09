@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface DocumentoMatriculaRepository extends JpaRepository<DocumentoMatricula, UUID> {
-
+    DocumentoMatricula findBynumeroDocumento(int numeroDocumento);
 }

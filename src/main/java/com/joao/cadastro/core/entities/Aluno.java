@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -36,13 +37,13 @@ public class Aluno {
     //relação do curso com aluno
     //teste
     //@ManyToOne(cascade=CascadeType.PERSIST)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curso_id"
     )
     private Curso curso;
 
     //relação entre aluno e disciplina -> que seria muitos pra muitos
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "TB_Aluno_Disciplina",
             joinColumns = @JoinColumn(name = "aluno_id"),

@@ -1,5 +1,7 @@
 package com.joao.cadastro.core.usecases;
 
+import com.joao.cadastro.core.Dtos.AlunoDto;
+
 public interface UpdateUseCase {
-    void updateAluno();
+    void atualizarRegistroAluno(AlunoDto alunoDto);
 }

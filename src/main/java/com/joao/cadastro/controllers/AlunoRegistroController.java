@@ -20,9 +20,9 @@ public class AlunoRegistroController {
     CriarRegistroAlunoUseCase criarRegistroAlunoUseCase;
 
     @PostMapping(value = "registro")
-    public void postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
+    public String postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
         System.out.println(alunoDto.getNome_aluno());
-        criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
-
+        //criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
+        return criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
     }
 }
