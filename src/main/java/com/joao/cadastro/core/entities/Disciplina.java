@@ -19,7 +19,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_Disciplina")
 public class Disciplina {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -30,10 +29,9 @@ public class Disciplina {
     @ManyToMany(mappedBy = "disciplinas")
     private Set<Aluno> alunos;
 
-    //relação com o curso
+
     @ManyToMany(mappedBy = "disciplinas")
     private Set<Curso> cursos;
-
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
@@ -42,6 +40,4 @@ public class Disciplina {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime update_at;
-
-
 }

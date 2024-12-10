@@ -1,5 +1,5 @@
 insert into tb_curso values (gen_random_uuid(), 'Ciencia da Computacao',NOW()), (gen_random_uuid(), 'Jogos',NOW()),
-(gen_random_uuid(), 'Design',NOW()), (gen_random_uuid(), 'Engenharia Biomedica',NOW());*/
+(gen_random_uuid(), 'Design',NOW()), (gen_random_uuid(), 'Engenharia Biomedica',NOW());
 
 insert into tb_disciplina values (gen_random_uuid(), 'Calculo 1',NOW()), (gen_random_uuid(), 'Geometria Analitica',NOW()), (gen_random_uuid(), 'FOO',NOW()),
 (gen_random_uuid(), 'Fisica',NOW()), (gen_random_uuid(), 'Computacao Grafica',NOW()), (gen_random_uuid(), 'Algebra linear',NOW()),

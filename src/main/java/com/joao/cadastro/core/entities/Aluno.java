@@ -26,7 +26,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_Aluno")
 public class Aluno {
-    //Definição da primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID aluno_id;
@@ -34,15 +33,11 @@ public class Aluno {
     @Column(name = "nome",nullable = false,unique = false)
     private String nome;
 
-    //relação do curso com aluno
-    //teste
-    //@ManyToOne(cascade=CascadeType.PERSIST)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "curso_id"
     )
     private Curso curso;
 
-    //relação entre aluno e disciplina -> que seria muitos pra muitos
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "TB_Aluno_Disciplina",
@@ -51,8 +46,6 @@ public class Aluno {
     )
     private Set<Disciplina>disciplinas;
 
-
-    //relação entre aluno e documentoMatricula
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "matricula_id",unique = false)
     private DocumentoMatricula documentoMatricula;
@@ -64,6 +57,4 @@ public class Aluno {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime update_at;
-
-
 }

@@ -3,15 +3,16 @@ package com.joao.cadastro.core.services;
 import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Aluno;
 import com.joao.cadastro.core.entities.Curso;
-import com.joao.cadastro.core.entities.DocumentoMatricula;
 import com.joao.cadastro.core.usecases.UpdateUseCase;
 import com.joao.cadastro.repository.AlunoRepository;
 import com.joao.cadastro.repository.CursoRepository;
 import com.joao.cadastro.repository.DocumentoMatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-public class UpdateRegistroAlunoService implements UpdateUseCase {
+@Service
+public class UpdateRegistroAlunoService extends BaseService implements UpdateUseCase {
     @Autowired
     AlunoRepository alunoRepository;
 
@@ -22,34 +23,17 @@ public class UpdateRegistroAlunoService implements UpdateUseCase {
     CursoRepository cursoRepository;
 
     @Transactional
-    public void atualizarRegistroAluno(AlunoDto alunoDto) {
-        String nomeCurso = alunoDto.getNome_curso();
-        Curso cursoRealizado = buscarCurso(nomeCurso);
-        DocumentoMatricula documentoMatricula = atualizarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
-
-        Aluno aluno = new Aluno();
-        aluno.setCurso(cursoRealizado);
-        aluno.setNome(alunoDto.getNome_aluno());
-        aluno.setDocumentoMatricula(documentoMatricula);
-
-        alunoRepository.save(aluno);
+    public String atualizarRegistroAluno(AlunoDto alunoDto) {
+        System.out.println("Valor " + alunoDto.getNome_aluno());
+        if(!checarDocumentoMatricula(alunoDto.getNumeroDocumentoMatricula())){
+            String nomeCurso = alunoDto.getNome_curso();
+            Curso cursoRealizado = buscarCurso(nomeCurso);
+            Aluno aluno = documentoMatriculaRepository.findBynumeroDocumento(alunoDto.getNumeroDocumentoMatricula()).getAluno();
+            aluno.setCurso(cursoRealizado);
+            aluno.setNome(alunoDto.getNome_aluno());
+            alunoRepository.save(aluno);
+            return "Aluno " + alunoDto.getNome_aluno() + " teve informações modificado";
+        }
+        return "Não existe aluno com esse registro de matricula";
     }
-
-    //buscar uma entidade curso na base de dados com base no nome
-    private Curso buscarCurso(String nomeCurso){
-        return cursoRepository.findCursoByNome(nomeCurso);
-    }
-
-    //cria uma entidade matricula
-    private DocumentoMatricula atualizarRegistroMatricula(int numeroMatricula){
-        /*DocumentoMatricula documentoMatricula = new DocumentoMatricula();
-        documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
-        System.out.println(documentoMatricula.getNumeroDocumento());
-        return documentoMatricula;*/
-        DocumentoMatricula documentoMatricula = new DocumentoMatricula();
-        documentoMatricula.setNumeroDocumento(numeroMatricula);
-        System.out.println(documentoMatricula.getNumeroDocumento());
-        return documentoMatricula;
-    }
-
 }

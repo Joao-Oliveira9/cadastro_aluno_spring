@@ -25,18 +25,8 @@ public class DeletarRegistroDeAlunoService implements DeleteUseCase {
     @Autowired
     DocumentoMatriculaRepository documentoMatriculaRepository;
 
-    //shadow delete, preciso sinalizar quando aquele aluno nao deve ser mais lido nas consultas ao banco de dados
     @Transactional
     public String deletarAluno(AlunoDto alunoDto) {
-        /*DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(Integer.parseInt(alunoDto.getNumeroDocumentoMatricula()));
-        if(documentoMatricula !=null){
-            Aluno aluno = documentoMatricula.getAluno();
-            String nomeAlunoRemovido = aluno.getNome();
-            alunoRepository.delete(aluno);
-            return "Aluno " + nomeAlunoRemovido + " removido";
-        }
-        return "Esse numero de matricula nao esta sendo utilizado";*/
-
         DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(alunoDto.getNumeroDocumentoMatricula());
         if(documentoMatricula !=null){
             Aluno aluno = documentoMatricula.getAluno();

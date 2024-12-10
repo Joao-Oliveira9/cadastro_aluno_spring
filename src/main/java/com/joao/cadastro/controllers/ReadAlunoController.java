@@ -20,16 +20,8 @@ public class ReadAlunoController{
     @Autowired
     ReadUseCase readUseCase;
 
-    //@PostMapping(value = "deletar")
-   /* @GetMapping(value = "ler")
-    public void readRequest(@RequestBody UUID id_aluno){
-        System.out.println(id_aluno);
-        //return readUseCase.buscaInfoAluno(id_aluno);
-    }*/
-
-    @GetMapping(value = "ler")
+    @GetMapping(value = "read")
     public AlunoDto readRequest(@RequestBody AlunoDto alunoDto){
-        //System.out.println(alunoDto.getId_aluno());
         return readUseCase.buscaInfoAluno(alunoDto.getNumeroDocumentoMatricula());
     }
 }

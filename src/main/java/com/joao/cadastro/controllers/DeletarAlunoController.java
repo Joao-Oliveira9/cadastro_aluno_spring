@@ -14,8 +14,7 @@ public class DeletarAlunoController {
     @Autowired
     DeleteUseCase deleteUseCase;
 
-    //@PostMapping(value = "deletar")
-    @DeleteMapping(value = "deletar")
+    @DeleteMapping(value = "delete")
     public String deleteRequest(@RequestBody AlunoDto alunoDto){
         return deleteUseCase.deletarAluno(alunoDto);
     }

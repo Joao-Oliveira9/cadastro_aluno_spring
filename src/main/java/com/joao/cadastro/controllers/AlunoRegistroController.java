@@ -13,16 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AlunoRegistroController {
-
-    // AlunoRepository alunoRepository;
-
     @Autowired
     CriarRegistroAlunoUseCase criarRegistroAlunoUseCase;
 
-    @PostMapping(value = "registro")
+    @PostMapping(value = "create")
     public String postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
-        System.out.println(alunoDto.getNome_aluno());
-        //criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
         return criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
     }
 }

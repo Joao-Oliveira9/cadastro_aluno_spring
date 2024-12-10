@@ -29,7 +29,6 @@ public class Curso {
     @OneToMany(mappedBy = "curso",fetch = FetchType.LAZY)
     private Set<Aluno> aluno;
 
-    //relação entre aluno e curso
     @ManyToMany
     @JoinTable(
             name = "TB_curso_disciplina",
@@ -45,5 +44,4 @@ public class Curso {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime update_at;
-
 }
