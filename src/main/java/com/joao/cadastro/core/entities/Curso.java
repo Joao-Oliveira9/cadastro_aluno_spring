@@ -46,6 +46,4 @@ public class Curso {
     @Column(name = "updated_at")
     private LocalDateTime update_at;
 
-    @Column(name = "deleted_at",updatable = true)
-    private LocalDateTime deleted_at;
 }

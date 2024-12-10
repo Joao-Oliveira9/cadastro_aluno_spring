@@ -27,27 +27,23 @@ public class DeletarRegistroDeAlunoService implements DeleteUseCase {
 
     //shadow delete, preciso sinalizar quando aquele aluno nao deve ser mais lido nas consultas ao banco de dados
     @Transactional
-    public void deletarAluno(AlunoDto alunoDto) {
-        Aluno aluno = buscarAluno(alunoDto.getNome_aluno());
+    public String deletarAluno(AlunoDto alunoDto) {
+        /*DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(Integer.parseInt(alunoDto.getNumeroDocumentoMatricula()));
+        if(documentoMatricula !=null){
+            Aluno aluno = documentoMatricula.getAluno();
+            String nomeAlunoRemovido = aluno.getNome();
+            alunoRepository.delete(aluno);
+            return "Aluno " + nomeAlunoRemovido + " removido";
+        }
+        return "Esse numero de matricula nao esta sendo utilizado";*/
 
-        LocalDateTime dataDeExclusao = LocalDateTime.now();
-
-        //vai setar a data do ato de deletar na base de dados nas duas tabelas
-        aluno.setDeletedAt(dataDeExclusao);
-        DeletarDocumentoMatricula(aluno,dataDeExclusao);
-
-        System.out.println("Data"+ aluno.getDeletedAt());
-
-        alunoRepository.save(aluno);
-    }
-
-    private Aluno buscarAluno(String nome){
-        return alunoRepository.findByNome(nome);
-    }
-
-    private void DeletarDocumentoMatricula(Aluno aluno,LocalDateTime dataDeExclusao){
-       DocumentoMatricula documentoMatricula =  aluno.getDocumentoMatricula();
-       documentoMatricula.setDeleted_at(dataDeExclusao);
-       documentoMatriculaRepository.save(documentoMatricula);
+        DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(alunoDto.getNumeroDocumentoMatricula());
+        if(documentoMatricula !=null){
+            Aluno aluno = documentoMatricula.getAluno();
+            String nomeAlunoRemovido = aluno.getNome();
+            alunoRepository.delete(aluno);
+            return "Aluno " + nomeAlunoRemovido + " removido";
+        }
+        return "Esse numero de matricula nao esta sendo utilizado";
     }
 }

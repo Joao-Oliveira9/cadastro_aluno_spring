@@ -12,6 +12,7 @@ import java.util.UUID;
 public class AlunoDto {
     private String nome_aluno;
     private String nome_curso;
-    private String numeroDocumentoMatricula;
+    //private String numeroDocumentoMatricula;
+    private int numeroDocumentoMatricula;
     private UUID id_aluno;
 }

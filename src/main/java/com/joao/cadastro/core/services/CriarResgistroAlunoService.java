@@ -29,8 +29,22 @@ public class CriarResgistroAlunoService extends AlunoExistenteUseCaseImpl implem
 
     @Transactional
     public String criarRegistroAluno(AlunoDto alunoDto) {
+     /*   if(checarDocumentoMatricula(Integer.parseInt(alunoDto.getNumeroDocumentoMatricula()))){
+            String nomeCurso = alunoDto.getNome_curso();
+            Curso cursoRealizado = buscarCurso(nomeCurso);
+            DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
 
-        if(checarDocumentoMatricula(Integer.parseInt(alunoDto.getNumeroDocumentoMatricula()))){
+            Aluno aluno = new Aluno();
+            aluno.setCurso(cursoRealizado);
+            aluno.setNome(alunoDto.getNome_aluno());
+            aluno.setDocumentoMatricula(documentoMatricula);
+
+            alunoRepository.save(aluno);
+            return "Aluno " + aluno.getNome() +" inserido";
+        }
+        return "Numero de matricula ja sendo utilizado";*/
+
+        if(checarDocumentoMatricula(alunoDto.getNumeroDocumentoMatricula())){
             String nomeCurso = alunoDto.getNome_curso();
             Curso cursoRealizado = buscarCurso(nomeCurso);
             DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
@@ -44,6 +58,7 @@ public class CriarResgistroAlunoService extends AlunoExistenteUseCaseImpl implem
             return "Aluno " + aluno.getNome() +" inserido";
         }
         return "Numero de matricula ja sendo utilizado";
+
     }
 
     //buscar uma entidade curso na base de dados com base no nome
@@ -52,9 +67,9 @@ public class CriarResgistroAlunoService extends AlunoExistenteUseCaseImpl implem
     }
 
     //cria uma entidade matricula
-    private DocumentoMatricula criarRegistroMatricula(String numeroMatricula){
+    private DocumentoMatricula criarRegistroMatricula(int numeroMatricula){
         DocumentoMatricula documentoMatricula = new DocumentoMatricula();
-        documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
+        documentoMatricula.setNumeroDocumento(numeroMatricula);
         System.out.println(documentoMatricula.getNumeroDocumento());
         return documentoMatricula;
     }

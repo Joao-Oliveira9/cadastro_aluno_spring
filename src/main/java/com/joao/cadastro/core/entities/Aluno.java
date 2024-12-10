@@ -54,7 +54,7 @@ public class Aluno {
 
     //relação entre aluno e documentoMatricula
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "matricula_id",unique = true)
+    @JoinColumn(name = "matricula_id",unique = false)
     private DocumentoMatricula documentoMatricula;
 
     @CreationTimestamp
@@ -64,10 +64,6 @@ public class Aluno {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime update_at;
-
-    //nesse caso estou fazendo um soft delete- vai ser coletada a data de outra forma
-        @Column(name = "deleted_at", updatable = true)
-    private LocalDateTime deletedAt;
 
 
 }

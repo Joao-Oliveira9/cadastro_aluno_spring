@@ -18,24 +18,12 @@ public class AlunoExistenteUseCaseImpl {
     @Autowired
     DocumentoMatriculaRepository documentoMatriculaRepository;
 
-    public boolean verificarAlunoDeletado(UUID id_aluno){
-        if(alunoRepository.findById(id_aluno).isPresent()){
-            Aluno aluno = alunoRepository.findById(id_aluno).get();
-            if(aluno.getDeletedAt() == null)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    //eu preciso verificar se aquele numero de documento de matricula existe.
+    //Trocar por exceptions
     public boolean checarDocumentoMatricula(int numeroDocumento){
         if(documentoMatriculaRepository.findBynumeroDocumento(numeroDocumento) == null){
-            //nao existe aquele registro de documento pode ser inserido
             return true;
         }
-        //existe aquele registro não devera haver inserção
         return false;
     }
 }

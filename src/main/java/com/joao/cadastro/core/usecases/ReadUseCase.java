@@ -6,5 +6,5 @@ import com.joao.cadastro.core.entities.Aluno;
 import java.util.UUID;
 
 public interface ReadUseCase {
-    AlunoDto buscaInfoAluno(UUID id_aluno);
+    AlunoDto buscaInfoAluno(int numeroDocumento);
 }

@@ -30,6 +30,6 @@ public class ReadAlunoController{
     @GetMapping(value = "ler")
     public AlunoDto readRequest(@RequestBody AlunoDto alunoDto){
         //System.out.println(alunoDto.getId_aluno());
-        return readUseCase.buscaInfoAluno(alunoDto.getId_aluno());
+        return readUseCase.buscaInfoAluno(alunoDto.getNumeroDocumentoMatricula());
     }
 }

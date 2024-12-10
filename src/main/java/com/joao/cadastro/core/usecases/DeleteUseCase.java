@@ -4,5 +4,5 @@ import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Aluno;
 
 public interface DeleteUseCase {
-    void deletarAluno(AlunoDto alunoDto);
+    String deletarAluno(AlunoDto alunoDto);
 }

@@ -16,7 +16,7 @@ public class DeletarAlunoController {
 
     //@PostMapping(value = "deletar")
     @DeleteMapping(value = "deletar")
-    public void deleteRequest(@RequestBody AlunoDto alunoDto){
-        deleteUseCase.deletarAluno(alunoDto);
+    public String deleteRequest(@RequestBody AlunoDto alunoDto){
+        return deleteUseCase.deletarAluno(alunoDto);
     }
 }

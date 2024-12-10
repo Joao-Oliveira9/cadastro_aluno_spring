@@ -23,7 +23,7 @@ public class DocumentoMatricula {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "numeroDocumento",nullable = false,unique = true)
+    @Column(name = "numeroDocumento",nullable = false,unique = false)
     private int numeroDocumento;
 
     @CreationTimestamp
@@ -36,7 +36,4 @@ public class DocumentoMatricula {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
-
-    @Column(name = "deleted_at",updatable = true)
-    private LocalDateTime deleted_at;
 }

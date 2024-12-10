@@ -41,9 +41,13 @@ public class UpdateRegistroAlunoService implements UpdateUseCase {
     }
 
     //cria uma entidade matricula
-    private DocumentoMatricula atualizarRegistroMatricula(String numeroMatricula){
-        DocumentoMatricula documentoMatricula = new DocumentoMatricula();
+    private DocumentoMatricula atualizarRegistroMatricula(int numeroMatricula){
+        /*DocumentoMatricula documentoMatricula = new DocumentoMatricula();
         documentoMatricula.setNumeroDocumento(Integer.parseInt(numeroMatricula));
+        System.out.println(documentoMatricula.getNumeroDocumento());
+        return documentoMatricula;*/
+        DocumentoMatricula documentoMatricula = new DocumentoMatricula();
+        documentoMatricula.setNumeroDocumento(numeroMatricula);
         System.out.println(documentoMatricula.getNumeroDocumento());
         return documentoMatricula;
     }
