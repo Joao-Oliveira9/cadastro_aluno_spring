@@ -16,7 +16,7 @@ import java.util.UUID;
 public class AlunoDto {
     private String nome_aluno;
     private String nome_curso;
-    private int numeroDocumentoMatricula;
+    private Integer numeroDocumentoMatricula;
     private UUID id_aluno;
     private Set<Disciplina> disciplinas;
 }
