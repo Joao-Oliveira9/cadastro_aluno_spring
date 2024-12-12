@@ -36,12 +36,12 @@ public class CrudController {
     }
 
     @DeleteMapping(value = "delete")
-    public String deleteRequest(@RequestBody AlunoDto alunoDto){
+    public ResponseEntity<RestMessage> deleteRequest(@RequestBody AlunoDto alunoDto){
         return deleteUseCase.deletarAluno(alunoDto);
     }
 
     @PatchMapping(value = "update")
-    public String requestUpdate(@RequestBody AlunoDto alunoDto){
+    public ResponseEntity<RestMessage> requestUpdate(@RequestBody AlunoDto alunoDto){
         return updateUseCase.atualizarRegistroAluno(alunoDto);
     }
 }

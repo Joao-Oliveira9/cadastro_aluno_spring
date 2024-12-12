@@ -35,9 +35,7 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
             alunoRepository.save(aluno);
             RestMessage message = new RestMessage("Aluno " + aluno.getNome() +" inserido");
             return ResponseEntity.status(HttpStatus.OK).body(message);
-            //return "Aluno " + aluno.getNome() +" inserido";
         }else{
-            //return "Numero de matricula ja sendo utilizado";
             throw new MatriculaFoundException();
         }
     }
