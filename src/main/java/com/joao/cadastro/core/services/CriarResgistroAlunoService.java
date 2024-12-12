@@ -33,7 +33,6 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
             String nomeCurso = alunoDto.getNome_curso();
             Curso cursoRealizado = buscarCurso(nomeCurso);
             DocumentoMatricula documentoMatricula = criarRegistroMatricula(alunoDto.getNumeroDocumentoMatricula());
-            //Eu tenho uma tabela de curso_disciplina devo acessa-la e ali ser capaz de coleatar as disciplinas correspondente a x curso
 
             Set<Disciplina> listaDeDisciplinas = cursoRealizado.getDisciplinas();
 
@@ -41,9 +40,6 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
             copy.addAll(listaDeDisciplinas);
 
             System.out.println(copy);
-
-            //Set<Disciplina> listaDeDisciplinas = disciplinaRepository.fin;
-
 
             Aluno aluno = new Aluno();
             aluno.setCurso(cursoRealizado);

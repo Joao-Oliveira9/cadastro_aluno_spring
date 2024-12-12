@@ -1,10 +1,12 @@
 package com.joao.cadastro.core.Dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.joao.cadastro.core.entities.Disciplina;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -16,4 +18,5 @@ public class AlunoDto {
     private String nome_curso;
     private int numeroDocumentoMatricula;
     private UUID id_aluno;
+    private Set<Disciplina> disciplinas;
 }

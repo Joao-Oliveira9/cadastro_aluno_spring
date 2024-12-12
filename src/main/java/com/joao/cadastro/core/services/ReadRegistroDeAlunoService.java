@@ -23,7 +23,7 @@ public class ReadRegistroDeAlunoService extends BaseService implements ReadUseCa
             if (!checarDocumentoMatricula(numeroDocumento)) {
                 DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(numeroDocumento);
                 Aluno aluno = documentoMatricula.getAluno();
-                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id());
+                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),aluno.getDisciplinas());
                 return ResponseEntity.status(HttpStatus.OK).body(alunoDto);
             }else {
                 throw new MatriculaNotFoundExeception();
