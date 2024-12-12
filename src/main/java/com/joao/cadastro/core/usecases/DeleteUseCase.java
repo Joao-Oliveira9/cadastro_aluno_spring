@@ -6,5 +6,5 @@ import com.joao.cadastro.infra.RestMessage;
 import org.springframework.http.ResponseEntity;
 
 public interface DeleteUseCase {
-    ResponseEntity<RestMessage> deletarAluno(AlunoDto alunoDto);
+    ResponseEntity<RestMessage> deletarAluno(String numeroDocumentoMatricula);
 }

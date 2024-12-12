@@ -34,7 +34,7 @@ public class Aluno {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id"
+    @JoinColumn(name = "curso_id" , nullable = false
     )
     private Curso curso;
 
@@ -47,7 +47,7 @@ public class Aluno {
     private Set<Disciplina>disciplinas;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "matricula_id",unique = false)
+    @JoinColumn(name = "matricula_id",unique = false,nullable = false)
     private DocumentoMatricula documentoMatricula;
 
     @CreationTimestamp

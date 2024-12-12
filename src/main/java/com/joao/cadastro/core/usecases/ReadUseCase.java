@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 import java.util.UUID;
 
 public interface ReadUseCase {
-    ResponseEntity<AlunoDto> buscaInfoAluno(int numeroDocumento);
+    ResponseEntity<AlunoDto> buscaInfoAluno(String numeroDocumento);
 }

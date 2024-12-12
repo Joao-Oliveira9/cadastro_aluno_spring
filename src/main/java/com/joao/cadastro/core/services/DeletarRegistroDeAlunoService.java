@@ -30,18 +30,16 @@ public class DeletarRegistroDeAlunoService implements DeleteUseCase {
     DocumentoMatriculaRepository documentoMatriculaRepository;
 
     @Transactional
-    public ResponseEntity<RestMessage> deletarAluno(AlunoDto alunoDto) {
-        DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(alunoDto.getNumeroDocumentoMatricula());
+    public ResponseEntity<RestMessage> deletarAluno(String numeroDocumentoMatricula) {
+        DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(Integer.parseInt(numeroDocumentoMatricula));
         if(documentoMatricula !=null){
             Aluno aluno = documentoMatricula.getAluno();
             String nomeAlunoRemovido = aluno.getNome();
             alunoRepository.delete(aluno);
             RestMessage message = new RestMessage("Aluno " + nomeAlunoRemovido + " removido");
             return ResponseEntity.status(HttpStatus.OK).body(message);
-            //return "Aluno " + nomeAlunoRemovido + " removido";
         }else{
             throw new MatriculaNotFoundExeception();
-            //return "Esse numero de matricula nao esta sendo utilizado";
         }
 
     }

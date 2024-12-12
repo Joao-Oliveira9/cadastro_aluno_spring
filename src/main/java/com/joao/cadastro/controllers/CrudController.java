@@ -8,8 +8,9 @@ import com.joao.cadastro.core.usecases.UpdateUseCase;
 import com.joao.cadastro.infra.RestMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class CrudController {
@@ -30,14 +31,15 @@ public class CrudController {
         return criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
     }
 
+    //ResponseEntity<AlunoDto>
     @GetMapping(value = "read")
-    public ResponseEntity<AlunoDto> readRequest(@RequestBody AlunoDto alunoDto){
-        return readUseCase.buscaInfoAluno(alunoDto.getNumeroDocumentoMatricula());
+    public ResponseEntity<AlunoDto> readRequest(@RequestBody Map<String, String> numeroDocumentoMatricula){
+        return readUseCase.buscaInfoAluno((numeroDocumentoMatricula.get("numeroDocumentoMatricula")));
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<RestMessage> deleteRequest(@RequestBody AlunoDto alunoDto){
-        return deleteUseCase.deletarAluno(alunoDto);
+    public ResponseEntity<RestMessage> deleteRequest(@RequestBody Map<String, String> numeroDocumentoMatricula){
+        return deleteUseCase.deletarAluno(numeroDocumentoMatricula.get("numeroDocumentoMatricula"));
     }
 
     @PatchMapping(value = "update")

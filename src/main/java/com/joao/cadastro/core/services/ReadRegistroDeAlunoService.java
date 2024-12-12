@@ -18,7 +18,8 @@ public class ReadRegistroDeAlunoService extends BaseService implements ReadUseCa
     @Autowired
     DocumentoMatriculaRepository documentoMatriculaRepository;
 
-    public ResponseEntity<AlunoDto> buscaInfoAluno(int numeroDocumento){
+    public ResponseEntity<AlunoDto> buscaInfoAluno(String numeroDocumentoString){
+            int numeroDocumento = Integer.parseInt(numeroDocumentoString);
             if (!checarDocumentoMatricula(numeroDocumento)) {
                 DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(numeroDocumento);
                 Aluno aluno = documentoMatricula.getAluno();
