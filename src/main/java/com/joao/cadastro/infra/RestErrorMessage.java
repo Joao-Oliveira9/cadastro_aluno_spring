@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 @Setter
 @AllArgsConstructor
 public class RestErrorMessage {
-    HttpStatus status ;
+    HttpStatus status;
     String message;
 }

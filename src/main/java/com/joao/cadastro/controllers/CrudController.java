@@ -31,7 +31,7 @@ public class CrudController {
     }
 
     @GetMapping(value = "read")
-    public AlunoDto readRequest(@RequestBody AlunoDto alunoDto){
+    public ResponseEntity<AlunoDto> readRequest(@RequestBody AlunoDto alunoDto){
         return readUseCase.buscaInfoAluno(alunoDto.getNumeroDocumentoMatricula());
     }
 
