@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
-public class RestErrorMessage {
-    HttpStatus status ;
-    String message;
+public class RestMessage {
+    private final HttpStatus status = HttpStatus.OK;
+    private String message;
 }
