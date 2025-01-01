@@ -49,7 +49,7 @@ public class Aluno {
 
     /*nova relação*/
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "aluno",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aluno",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Aluno_Disciplina> aluno_disciplinas;
 
     @OneToOne(cascade = CascadeType.ALL)

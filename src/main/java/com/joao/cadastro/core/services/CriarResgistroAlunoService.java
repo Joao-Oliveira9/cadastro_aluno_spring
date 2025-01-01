@@ -54,8 +54,6 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
         }
     }
 
-
-
     @Transactional
     public ResponseEntity<RestMessage> criarRegistroAluno2(AlunoDto alunoDto) {
         if(checarDocumentoMatricula(alunoDto.getNumeroDocumentoMatricula())){
