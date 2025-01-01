@@ -1,5 +1,6 @@
 package com.joao.cadastro.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
@@ -45,6 +46,11 @@ public class Aluno {
             inverseJoinColumns = @JoinColumn(name = "disciplina_id")
     )
     private Set<Disciplina>disciplinas;
+
+    /*nova relação*/
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "aluno",fetch = FetchType.LAZY)
+    private Set<Aluno_Disciplina> aluno_disciplinas;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "matricula_id",unique = false,nullable = false)
