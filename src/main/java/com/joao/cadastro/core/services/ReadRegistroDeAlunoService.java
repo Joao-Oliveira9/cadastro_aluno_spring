@@ -40,13 +40,7 @@ public class ReadRegistroDeAlunoService extends BaseService implements ReadUseCa
                     registroNotaDto.setNome_disciplina(aluno_disciplina.getDisciplina().getNome());
 
                     registroNotaDtos.add(registroNotaDto);
-                    //registroNotaDtos.add()
                 }
-
-
-
-                //AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),aluno.getDisciplinas());
-                //AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),disciplinas);
                 AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),registroNotaDtos);
 
                 return ResponseEntity.status(HttpStatus.OK).body(alunoDto);
