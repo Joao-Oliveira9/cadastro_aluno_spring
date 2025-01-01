@@ -18,5 +18,6 @@ public class AlunoDto {
     private String nome_curso;
     private Integer numeroDocumentoMatricula;
     private UUID id_aluno;
-    private Set<Disciplina> disciplinas;
+    //private Set<Disciplina> disciplinas;
+    private Set<RegistroNotaDto> registroNotaDtos;
 }

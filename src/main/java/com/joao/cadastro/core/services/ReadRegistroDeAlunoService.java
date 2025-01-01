@@ -1,6 +1,7 @@
 package com.joao.cadastro.core.services;
 
 import com.joao.cadastro.core.Dtos.AlunoDto;
+import com.joao.cadastro.core.Dtos.RegistroNotaDto;
 import com.joao.cadastro.core.entities.Aluno;
 import com.joao.cadastro.core.entities.Aluno_Disciplina;
 import com.joao.cadastro.core.entities.Disciplina;
@@ -30,12 +31,24 @@ public class ReadRegistroDeAlunoService extends BaseService implements ReadUseCa
                 Aluno aluno = documentoMatricula.getAluno();
 
                 Set<Disciplina> disciplinas = new HashSet<>();
+                Set<RegistroNotaDto> registroNotaDtos = new HashSet<>();
                 for(Aluno_Disciplina aluno_disciplina : aluno.getAluno_disciplinas()){
                     disciplinas.add(aluno_disciplina.getDisciplina());
+
+                    RegistroNotaDto registroNotaDto = new RegistroNotaDto();
+                    registroNotaDto.setNota(aluno_disciplina.getNota());
+                    registroNotaDto.setNome_disciplina(aluno_disciplina.getDisciplina().getNome());
+
+                    registroNotaDtos.add(registroNotaDto);
+                    //registroNotaDtos.add()
                 }
 
+
+
                 //AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),aluno.getDisciplinas());
-                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),disciplinas);
+                //AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),disciplinas);
+                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),registroNotaDtos);
+
                 return ResponseEntity.status(HttpStatus.OK).body(alunoDto);
             }else {
                 throw new MatriculaNotFoundExeception();
