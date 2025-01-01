@@ -2,12 +2,14 @@ package com.joao.cadastro.core.services;
 
 import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Aluno;
+import com.joao.cadastro.core.entities.Aluno_Disciplina;
 import com.joao.cadastro.core.entities.Curso;
 import com.joao.cadastro.core.entities.Disciplina;
 import com.joao.cadastro.core.usecases.UpdateUseCase;
 import com.joao.cadastro.exceptions.MatriculaNotFoundExeception;
 import com.joao.cadastro.infra.RestMessage;
 import com.joao.cadastro.repository.AlunoRepository;
+import com.joao.cadastro.repository.Aluno_DisciplinaRepository;
 import com.joao.cadastro.repository.CursoRepository;
 import com.joao.cadastro.repository.DocumentoMatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,11 @@ public class UpdateRegistroAlunoService extends BaseService implements UpdateUse
     @Autowired
     CursoRepository cursoRepository;
 
+    @Autowired
+    Aluno_DisciplinaRepository alunoDisciplinaRepository;
+
     @Transactional
     public ResponseEntity<RestMessage> atualizarRegistroAluno(AlunoDto alunoDto) {
-        System.out.println("Valor " + alunoDto.getNome_aluno());
         if(!checarDocumentoMatricula(alunoDto.getNumeroDocumentoMatricula())){
             String nomeCurso = alunoDto.getNome_curso();
             Curso cursoRealizado = buscarCurso(nomeCurso);
@@ -43,9 +47,21 @@ public class UpdateRegistroAlunoService extends BaseService implements UpdateUse
 
             Set<Disciplina> disciplinas = cursoRealizado.getDisciplinas();
 
-            Set<Disciplina> copy = new HashSet<>();
-            copy.addAll(disciplinas);
-            aluno.setDisciplinas(copy);
+            Set<Aluno_Disciplina> lista_aluno_disciplinas = new HashSet<>();
+
+            for(Aluno_Disciplina aluno_disciplina : aluno.getAluno_disciplinas()){
+                alunoDisciplinaRepository.delete(aluno_disciplina);
+            }
+
+            for(Disciplina disciplina : disciplinas){
+                Aluno_Disciplina aluno_disciplina = new Aluno_Disciplina();
+                aluno_disciplina.setAluno(aluno);
+                aluno_disciplina.setDisciplina(disciplina);
+                lista_aluno_disciplinas.add(aluno_disciplina);
+                alunoDisciplinaRepository.save(aluno_disciplina);
+            }
+
+            aluno.setAluno_disciplinas(lista_aluno_disciplinas);
 
             aluno.setNome(alunoDto.getNome_aluno());
             alunoRepository.save(aluno);

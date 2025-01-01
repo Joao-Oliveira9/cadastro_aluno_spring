@@ -39,15 +39,6 @@ public class Aluno {
     )
     private Curso curso;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "TB_Aluno_Disciplina",
-            joinColumns = @JoinColumn(name = "aluno_id"),
-            inverseJoinColumns = @JoinColumn(name = "disciplina_id")
-    )
-    private Set<Disciplina>disciplinas;
-
-    /*nova relação*/
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "aluno",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Aluno_Disciplina> aluno_disciplinas;

@@ -28,7 +28,7 @@ public class CrudController {
 
     @PostMapping(value = "create")
     public ResponseEntity<RestMessage> postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
-        return criarRegistroAlunoUseCase.criarRegistroAluno2(alunoDto);
+        return criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
     }
 
     //ResponseEntity<AlunoDto>

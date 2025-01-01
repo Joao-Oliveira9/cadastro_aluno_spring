@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface CriarRegistroAlunoUseCase extends BaseUseCase {
     ResponseEntity<RestMessage> criarRegistroAluno(AlunoDto alunoDto);
-    ResponseEntity<RestMessage> criarRegistroAluno2(AlunoDto alunoDto);
+
 }

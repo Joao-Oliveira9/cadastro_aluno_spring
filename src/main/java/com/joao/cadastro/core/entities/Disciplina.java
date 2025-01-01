@@ -31,11 +31,6 @@ public class Disciplina {
     private String nome;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(mappedBy = "disciplinas",fetch = FetchType.LAZY)
-    private Set<Aluno> alunos;
-
-    /*nova relação*/
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "disciplina",fetch = FetchType.LAZY)
     private Set<Aluno_Disciplina> alunos_Disciplina;
 
