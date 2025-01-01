@@ -1,10 +1,8 @@
 package com.joao.cadastro.controllers;
 
 import com.joao.cadastro.core.Dtos.AlunoDto;
-import com.joao.cadastro.core.usecases.CriarRegistroAlunoUseCase;
-import com.joao.cadastro.core.usecases.DeleteUseCase;
-import com.joao.cadastro.core.usecases.ReadUseCase;
-import com.joao.cadastro.core.usecases.UpdateUseCase;
+import com.joao.cadastro.core.Dtos.RegistroNotaDto;
+import com.joao.cadastro.core.usecases.*;
 import com.joao.cadastro.infra.RestMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,9 @@ public class CrudController {
     @Autowired
     UpdateUseCase updateUseCase;
 
+    @Autowired
+    UpdateNotaUseCase updateNotaUseCase;
+
     @PostMapping(value = "create")
     public ResponseEntity<RestMessage> postRequestResgistroAluno(@RequestBody AlunoDto alunoDto){
         return criarRegistroAlunoUseCase.criarRegistroAluno(alunoDto);
@@ -46,4 +47,17 @@ public class CrudController {
     public ResponseEntity<RestMessage> requestUpdate(@RequestBody AlunoDto alunoDto){
         return updateUseCase.atualizarRegistroAluno(alunoDto);
     }
+
+   /* @PatchMapping(value = "update_Nota")
+    public ResponseEntity<RestMessage> requestUpdateNota(@RequestBody RegistroNotaDto RegistroNotaDto){
+        //return updateUseCase.atualizarRegistroAluno(alunoDto);
+
+    }*/
+
+   @PatchMapping(value = "update_nota")
+   public void requestUpdateNota(@RequestBody RegistroNotaDto registroNotaDto){
+       //return updateUseCase.atualizarRegistroAluno(alunoDto);
+        updateNotaUseCase.atualizarNotaAluno(registroNotaDto);
+   }
+
 }
