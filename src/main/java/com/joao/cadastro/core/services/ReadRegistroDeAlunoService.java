@@ -2,6 +2,8 @@ package com.joao.cadastro.core.services;
 
 import com.joao.cadastro.core.Dtos.AlunoDto;
 import com.joao.cadastro.core.entities.Aluno;
+import com.joao.cadastro.core.entities.Aluno_Disciplina;
+import com.joao.cadastro.core.entities.Disciplina;
 import com.joao.cadastro.core.entities.DocumentoMatricula;
 import com.joao.cadastro.core.usecases.ReadUseCase;
 import com.joao.cadastro.exceptions.MatriculaNotFoundExeception;
@@ -11,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Service
@@ -23,7 +28,14 @@ public class ReadRegistroDeAlunoService extends BaseService implements ReadUseCa
             if (!checarDocumentoMatricula(numeroDocumento)) {
                 DocumentoMatricula documentoMatricula = documentoMatriculaRepository.findBynumeroDocumento(numeroDocumento);
                 Aluno aluno = documentoMatricula.getAluno();
-                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),aluno.getDisciplinas());
+
+                Set<Disciplina> disciplinas = new HashSet<>();
+                for(Aluno_Disciplina aluno_disciplina : aluno.getAluno_disciplinas()){
+                    disciplinas.add(aluno_disciplina.getDisciplina());
+                }
+
+                //AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),aluno.getDisciplinas());
+                AlunoDto alunoDto = new AlunoDto(aluno.getNome(),aluno.getCurso().getNome(),aluno.getDocumentoMatricula().getNumeroDocumento(),aluno.getAluno_id(),disciplinas);
                 return ResponseEntity.status(HttpStatus.OK).body(alunoDto);
             }else {
                 throw new MatriculaNotFoundExeception();
