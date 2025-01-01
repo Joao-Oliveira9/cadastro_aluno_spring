@@ -1,5 +1,7 @@
 package com.joao.cadastro.infra;
 
+import com.joao.cadastro.exceptions.AlunoNotFoundException;
+import com.joao.cadastro.exceptions.DisciplinaNotFoundException;
 import com.joao.cadastro.exceptions.MatriculaFoundException;
 import com.joao.cadastro.exceptions.MatriculaNotFoundExeception;
 import org.hibernate.PropertyValueException;
@@ -11,6 +13,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class RestExceptionHandler {
+
+    @ExceptionHandler
+    public ResponseEntity<RestErrorMessage> AlunoNotFoundExeceptionHandler(AlunoNotFoundException exeception){
+        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,exeception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<RestErrorMessage> handleInvalidJson(HttpMessageNotReadableException exception) {
         RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,"Formato Invalido Json");
@@ -37,16 +46,23 @@ public class RestExceptionHandler {
 
 
     @ExceptionHandler
-    public ResponseEntity<RestErrorMessage> MatriculaNotFoundExeceptionHandler(MatriculaNotFoundExeception exeception){
+    public ResponseEntity<RestErrorMessage> MatriculaNotFoundExceptionHandler(MatriculaNotFoundExeception exeception){
        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,exeception.getMessage());
        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
     }
 
 
     @ExceptionHandler
-    public ResponseEntity<RestErrorMessage> MatriculaFoundException(MatriculaFoundException exception){
+    public ResponseEntity<RestErrorMessage> MatriculaFoundExceptionHandler(MatriculaFoundException exception){
         RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<RestErrorMessage> DisciplinaNotFoundExceptionHandler(DisciplinaNotFoundException exception){
+        RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+    }
+
 
 }

@@ -6,5 +6,5 @@ import com.joao.cadastro.infra.RestMessage;
 import org.springframework.http.ResponseEntity;
 
 public interface UpdateNotaUseCase {
-    void atualizarNotaAluno(RegistroNotaDto registroNotaDto);
+    ResponseEntity<RestMessage> atualizarNotaAluno(RegistroNotaDto registroNotaDto);
 }

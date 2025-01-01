@@ -55,9 +55,9 @@ public class CrudController {
     }*/
 
    @PatchMapping(value = "update_nota")
-   public void requestUpdateNota(@RequestBody RegistroNotaDto registroNotaDto){
+   public ResponseEntity<RestMessage> requestUpdateNota(@RequestBody RegistroNotaDto registroNotaDto){
        //return updateUseCase.atualizarRegistroAluno(alunoDto);
-        updateNotaUseCase.atualizarNotaAluno(registroNotaDto);
+       return updateNotaUseCase.atualizarNotaAluno(registroNotaDto);
    }
 
 }
