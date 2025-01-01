@@ -7,6 +7,7 @@ import com.joao.cadastro.infra.RestMessage;
 import  com.joao.cadastro.repository.AlunoRepository;
 import com.joao.cadastro.core.usecases.CriarRegistroAlunoUseCase;
 
+import com.joao.cadastro.repository.Aluno_DisciplinaRepository;
 import com.joao.cadastro.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
 
     @Autowired
     DisciplinaRepository disciplinaRepository;
+
+    @Autowired
+    Aluno_DisciplinaRepository alunoDisciplinaRepository;
 
     @Transactional
     public ResponseEntity<RestMessage> criarRegistroAluno(AlunoDto alunoDto) {
@@ -69,26 +73,19 @@ public class CriarResgistroAlunoService extends BaseService implements CriarRegi
             aluno.setNome(alunoDto.getNome_aluno());
             aluno.setDocumentoMatricula(documentoMatricula);
 
-
-            int tamanhoDaListaDeDisciplinas = copy.size();
-
-            for(int i = 0;i<tamanhoDaListaDeDisciplinas;i++){
-                Aluno_Disciplina aluno_disciplina = new Aluno_Disciplina();
-                aluno_disciplina.setAluno(aluno);
-                aluno_disciplina.setDisciplina(copy[tamanhoDaListaDeDisciplinas]);
-            }
-
+            Set<Aluno_Disciplina> lista_aluno_disciplinas = new HashSet<>();
 
             for(Disciplina disciplina : copy){
                 Aluno_Disciplina aluno_disciplina = new Aluno_Disciplina();
                 aluno_disciplina.setAluno(aluno);
-                aluno_disciplina
+                aluno_disciplina.setDisciplina(disciplina);
+                lista_aluno_disciplinas.add(aluno_disciplina);
+                alunoDisciplinaRepository.save(aluno_disciplina);
+                //System.out.println(aluno_disciplina.getDisciplina());
             }
 
-            Aluno_Disciplina aluno_disciplina = new Aluno_Disciplina();
-            aluno_disciplina.setAluno(aluno);
-            aluno_disciplina.setDisciplina();
-            /*aluno.setDisciplinas(copy);*/
+            aluno.setAluno_disciplinas(lista_aluno_disciplinas);
+
 
             alunoRepository.save(aluno);
             RestMessage message = new RestMessage("Aluno " + aluno.getNome() +" inserido");

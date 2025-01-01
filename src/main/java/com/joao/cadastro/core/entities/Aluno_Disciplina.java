@@ -14,7 +14,6 @@ import java.util.UUID;
 @Getter
 @Table(name = "TB_Aluno_Disciplina_teste")
 public class Aluno_Disciplina {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
